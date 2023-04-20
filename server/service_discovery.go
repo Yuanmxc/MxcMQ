@@ -1,7 +1,7 @@
 package server
 
 import (
-	"Mxc/logger"
+	"MxcMQ/logger"
 	"encoding/json"
 )
 
