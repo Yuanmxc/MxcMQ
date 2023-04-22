@@ -43,7 +43,7 @@ func init() {
 }
 
 func getFilePath() string {
-	logfile := getCurrentDir() + "/" + "xmq" + ".log"
+	logfile := getCurrentDir() + "/" + "MxcMQ" + ".log"
 	return logfile
 }
 
