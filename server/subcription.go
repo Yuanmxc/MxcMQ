@@ -15,7 +15,7 @@ type subcription struct {
 	Ackch   chan uint64
 }
 
-// todo: need to persist ? or to rc ?
+// todo: need to persist ? or to rc ? 
 type subcriptionData struct {
 	Meta       rc.SubcriptionNode
 	Subers     map[string]string

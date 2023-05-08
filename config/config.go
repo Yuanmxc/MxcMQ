@@ -75,7 +75,7 @@ func GetConfig() {
 	if err := viper.Unmarshal(&ZkConf); err != nil {
 		panic(fmt.Errorf("Unmarshal to ZkConf failed, err: %v", err))
 	}
-
+	
 	if err := viper.Unmarshal(&EConf); err != nil {
 		panic(fmt.Errorf("Unmarshal to EtcdConf failed, err: %v", err))
 	}
