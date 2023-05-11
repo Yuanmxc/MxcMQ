@@ -12,9 +12,8 @@ type Bundles struct {
 }
 
 type Bundle struct {
-	Info       rc.BundleNode
+	Info       *rc.BundleNode
 	Partitions sync.Map
-	// pnode map[string]rc.PartitionNode
 }
 
 type BundleInfo struct {
@@ -43,7 +42,7 @@ func NewBundles() (*Bundles, error) {
 func NewBundle(id int) (*Bundle, error) {
 	shard := MaxAddress / defaultNumberOfBundles
 	uint32Shard := uint32(shard)
-	info := rc.BundleNode{
+	info := &rc.BundleNode{
 		ID:    id,
 		End:   uint32Shard * uint32(id),
 		Start: uint32Shard*uint32(id) - uint32Shard,
@@ -76,5 +75,5 @@ func (bs *Bundles) bsearch(key uint32) (int, error) {
 		}
 	}
 
-	return 0, errors.New("not found")
+	return 0, errors.New("??? not found")
 }
