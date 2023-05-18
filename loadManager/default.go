@@ -32,10 +32,10 @@ type LoadManager struct {
 type LoadReport struct {
 }
 
-func NewLoadManager(bNode *rc.BrokerNode) *LoadManager{
+func NewLoadManager(bNode *rc.BrokerNode) *LoadManager {
 	lm := &LoadManager{
-		State: Follower,
-		bNode: bNode,
+		State:      Follower,
+		bNode:      bNode,
 		preBrokers: make(map[string]*rc.BrokerNode),
 		curBrokers: make(map[string]*rc.BrokerNode),
 	}
@@ -93,7 +93,7 @@ func (lm *LoadManager) startLeaderTask() {
 }
 
 func (lm *LoadManager) startWatchAllBrokers() {
-	path := rc.ZkCli.ZkBrokerRoot + "/"
+	path := rc.ZkCli.ZkBrokerRoot
 	_, ch, err := rc.ZkCli.RegisterChildrenWatcher(path)
 	if err != nil {
 		logger.Errorf("RegisterChildrenWatcher failed: %v", err)
@@ -140,6 +140,7 @@ func (lm *LoadManager) startCollectLoadData() {
 func (lm *LoadManager) pushLoadReport2registry() {
 	for {
 		if err := rc.ZkCli.UpdateBroker(lm.bNode); err != nil {
+			logger.Infoln(*lm.bNode)
 			logger.Errorf("UpdateBroker failed: %v", err)
 		}
 		time.Sleep(time.Second * time.Duration(config.SrvConf.PushLoadDataInterval))

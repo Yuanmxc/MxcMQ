@@ -1,6 +1,7 @@
 package config
 
 import (
+	"MxcMQ/logger"
 	"fmt"
 
 	"github.com/spf13/viper"
@@ -55,6 +56,7 @@ type ZookeeperConf struct {
 	BrokerRoot     string
 	TopicRoot      string
 	BundleRoot     string
+	LeadBrokerRoot string
 	SessionTimeout int
 }
 
@@ -63,12 +65,8 @@ type EtcdConf struct {
 	DialTimeout int
 }
 
-func init() {
-	GetConfig()
-}
-
-func GetConfig() {
-	viper.SetConfigFile("../config/config.yaml")
+func GetConfig(path string) {
+	viper.SetConfigFile(path)
 	if err := viper.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("ReadInConfig failed, err: %v", err))
 	}
@@ -84,4 +82,5 @@ func GetConfig() {
 	if err := viper.UnmarshalKey("etcd", EConf); err != nil {
 		panic(fmt.Errorf("Unmarshal to EtcdConf failed, err: %v", err))
 	}
+	logger.Infof("load config: %v", path)
 }

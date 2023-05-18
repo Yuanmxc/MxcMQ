@@ -26,7 +26,7 @@ var (
 			config.GetConfig(c.String("c"))
 			persist.PersistInit()
 			rc.RcInit()
-			
+
 			server := server.NewServerFromConfig()
 			if err := server.Online(); err != nil {
 				logger.Errorf("Online failed: %v", err)
