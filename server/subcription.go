@@ -9,7 +9,7 @@ import (
 
 type subcription struct {
 	mu   sync.Mutex
-	Data subcriptionData
+	Data *subcriptionData
 	// Clients map[string]*client
 	clients map[string]*grpc.ClientConn
 	Ackch   chan uint64
@@ -34,7 +34,7 @@ func NewSublist() *sublist {
 }
 
 func NewSubcription() *subcription {
-	data := subcriptionData{
+	data := &subcriptionData{
 		Subers: make(map[string]string),
 	}
 	sub := &subcription{
