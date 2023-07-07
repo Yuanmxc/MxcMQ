@@ -17,6 +17,7 @@ type ServerConf struct {
 	Name            string
 	Host            string
 	Port            int
+	LogLevel        int
 	DefaultSendSize int
 	RpcTimeout      int
 
@@ -48,6 +49,9 @@ type ServerConf struct {
 
 	OperationRedoNum int
 	OperationTimeout int
+
+	HeartBeatInterval int
+	TimeoutTimes      int
 }
 
 type ZookeeperConf struct {
