@@ -15,6 +15,7 @@ import (
 )
 
 const defaultBufSize = 65536
+
 // const defaultSendSize = 30
 
 type client struct {
@@ -284,7 +285,6 @@ func (c *client) processPull(arg []byte) error {
 	return nil
 }
 
-
 // consider ack msid
 func (c *client) waitAck(ch chan uint64) bool {
 	select {
@@ -449,7 +449,7 @@ func (c *client) sendMsg(pa *msg.PullArg, m []*msg.MsgData) error {
 	msgh = append(msgh, []byte(pa.Topic)...)
 	msgh = append(msgh, " "...)
 	msgh = append(msgh, []byte(strconv.Itoa(pa.Partition))...)
-	
+
 	c.mu.Lock()
 	c.bw.Write(msgh)
 	c.bw.WriteString("\r\n")

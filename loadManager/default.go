@@ -86,7 +86,7 @@ func (lm *LoadManager) startWatchAllBrokers() {
 	curBrokers, ch, err := rc.ZkCli.RegisterChildrenWatcher(path)
 	if err != nil {
 		logger.Errorf("RegisterChildrenWatcher failed: %v", err)
-	}                                                                             
+	}
 }
 
 func (lm *LoadManager) brokerIsAFollowerNow() {

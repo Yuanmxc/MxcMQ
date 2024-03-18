@@ -192,8 +192,8 @@ func (s *Server) createClient(conn net.Conn) *client {
 // 	val := fmt.Sprintf("%d/r/n%v", m.Mid, m.Payload)
 // 	_, err := s.kv.Put(context.TODO(), key, val)
 
-// 	return err
-// }
+//		return err
+//	}
 func (s *Server) PutMsg(m *msg.PubArg, mData msg.MsgData) error {
 	key := fmt.Sprintf(msgKey, m.Topic, m.Partition, m.Mid)
 	data, err := json.Marshal(mData)
@@ -457,7 +457,7 @@ func (s *Server) ProcessSub(ctx context.Context, args *pb.SubscribeArgs) (*pb.Su
 		}
 		s.ps[name] = pNode
 	}
-	
+
 	switch args.SubOffset {
 	case 0:
 		sub.Data.PushOffset = s.ps[name].PushOffset + 1
